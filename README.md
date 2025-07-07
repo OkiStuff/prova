@@ -50,7 +50,7 @@ PV_MAIN(example_tests)
 ```
 
 ```bash
-$ gcc -o example_tests example_tests.c -lprova
+$ gcc -o example_tests example_tests.c
 $ ./example_tests
 Example Tests
 =======================
