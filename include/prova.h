@@ -172,11 +172,16 @@ if (actual_result_buffer == NULL)\
 snprintf(actual_result_temp_buffer, sizeof(char) * PV_ACTUAL_RESULT_BUFFER_SIZE, #a " = %s and " #b " = %s", PV__FORMAT_SPECIFIER(a), PV__FORMAT_SPECIFIER(b));\
 snprintf(actual_result_buffer, sizeof(char) * PV_ACTUAL_RESULT_BUFFER_SIZE, actual_result_temp_buffer, PV__FORMAT_VALUE(a), PV__FORMAT_VALUE(b));\
 actual_result_buffer[PV_ACTUAL_RESULT_BUFFER_SIZE - 1] = '\0';\
+char* assertion_description = "";\
+if ((detail)[0] != '\0')\
+{\
+	assertion_description = ", assertion detail: " detail;\
+}\
 return (pv_test_result)\
 {\
 	.name = pv__test_name,\
 	.description = pv__test_description,\
-	.failed_assertion_description = detail,\
+	.failed_assertion_description = assertion_description,\
 	.expected_condition = #a " " comparison_operator " " #b ,\
 	.actual_result = actual_result_buffer\
 };\
